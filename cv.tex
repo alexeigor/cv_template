@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper]{article}
+
+% Adjust margins if needed
+\usepackage[left=0.8in,right=0.8in,top=0.8in,bottom=0.8in]{geometry}
+\usepackage{nopageno} % Remove page numbers
+\usepackage{calc}
+\usepackage{paralist} % For compact lists
+\usepackage{fancyhdr,lastpage} % For footer (if you decide to add page numbers later)
+\usepackage{xcolor,hyperref} % For colors and clickable links
+\usepackage{lmodern} % Font package
+
+% Page style
+% Currently no page numbers, uncomment if you want them
+%\pagestyle{fancy}
+%\fancyhf{}
+%\renewcommand{\headrulewidth}{0pt}
+%\fancyfoot[C]{\arabic{page} of \pageref*{LastPage}}
+
+% Colors and links
+\definecolor{sectionblue}{RGB}{0, 70, 140} % Define a color for section titles
+\hypersetup{colorlinks, linkcolor=sectionblue, urlcolor=sectionblue} % Setup hyperlink colors
+
+% Section format
+\newcommand{\cvsection}[1]{%
+  \vspace{2mm}% % Space before the section title
+  \noindent{\Large\bfseries\color{sectionblue} #1}\\[-0.5ex] % Section title in color and bold
+  \noindent\rule{\textwidth}{0.5pt}% % Horizontal rule below the title
+}
+
+% List styles (used for professional experience and education details)
+\newenvironment{outerlist}[1][\enskip\textbullet] % Outer list environment
+  {\begin{compactitem}[#1]}
+  {\end{compactitem}}
+
+\newenvironment{innerlist}[1][\enskip\textbullet] % Inner list environment
+  {\begin{compactitem}[#1]}
+  {\end{compactitem}}
+
+\newcommand{\blankline}{\quad\pagebreak[2]} % Command for a blank line (can force page breaks)
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% --- Your Name ---
+\centerline{\Huge\bfseries\sffamily Your Name}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Contact Information} % Section title
+% Adjust column width if needed
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+% --- Location ---
+\textit{Location:} City, Country \\
+% --- Email Address ---
+\textit{E-mail:} \href{mailto:email@example.com}{email@example.com} \\
+% --- LinkedIn Profile ---
+\textit{LinkedIn:} \href{https://www.linkedin.com/in/yourlinkedinprofile/}{https://www.linkedin.com/in/yourlinkedinprofile/} \\
+% --- Optional: Phone Number ---
+%\textit{Phone:} +1 (123) 456-7890 \\
+% --- Optional: Website or Portfolio ---
+%\textit{Website:} \href{https://www.yourwebsite.com}{https://www.yourwebsite.com} \\
+
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Profile} % Section title
+% --- Your Professional Summary ---
+Highly motivated and results-oriented professional with [Number] years of experience in [Your Field(s)]. Proven ability to [mention 2-3 key skills or achievements, e.g., lead teams, develop innovative solutions, optimize processes]. Seeking to leverage expertise in [specific area] to contribute to [type of organization or goal].
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Technical Skills} % Section title
+% --- List your key technical skills ---
+Proficient in [Programming Languages, e.g., Python, C++, Java], [Frameworks/Libraries, e.g., PyTorch, TensorFlow, React], [Tools, e.g., Docker, Git], [Cloud Platforms, e.g., AWS, Azure, GCP], [Databases, e.g., SQL, NoSQL], and [Operating Systems, e.g., Linux, Windows].
+Familiar with [other relevant skills or domains, e.g., machine learning concepts, data analysis techniques, system design].
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Professional Experience} % Section title
+
+% --- Sample Job Entry 1 ---
+\textbf{Company Name 1} % Company Name
+\begin{outerlist}
+  \item[] \textit{Your Job Title} \hfill Start Date - End Date (or Present) % Job Title and Dates
+  \begin{innerlist}
+    \item Developed [Specific project or responsibility], resulting in [Quantifiable achievement]. % Use action verbs and quantify results
+    \item Led [Team size or type of project], achieving [Outcome].
+    \item Contributed to [Specific task or technology], improving [Metric or process].
+  \end{innerlist}
+\end{outerlist}
+
+\medskip % Adds a small vertical space between entries
+% --- Sample Job Entry 2 ---
+\textbf{Company Name 2}
+\begin{outerlist}
+  \item[] \textit{Another Job Title} \hfill Start Date - End Date
+  \begin{innerlist}
+    \item Managed [Area of responsibility], which involved [Key tasks].
+    \item Collaborated with [Other teams or stakeholders] on [Project or goal].
+    \item Implemented [Technology or process change], leading to [Benefit].
+  \end{innerlist}
+\end{outerlist}
+
+\medskip
+% --- Add more job entries as needed following the same structure ---
+%\textbf{Company Name 3}
+%\begin{outerlist}
+%  \item[] \textit{Previous Job Title} \hfill Start Date - End Date
+%  \begin{innerlist}
+%    \item [Responsibility/Achievement]
+%  \end{innerlist}
+%\end{outerlist}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Education} % Section title
+
+% --- Sample Education Entry 1 (Most Recent) ---
+\textbf{University Name 1}, City, Country  \hfill Years Attended (e.g., 2018 - 2022) % University and Dates
+\begin{outerlist}
+  \item[] Degree Name, {Major/Department} % Degree and Major
+    \begin{innerlist}
+    \item Area of Study: [Specific Focus Area].
+    \item GPA: [Your GPA or relevant academic achievement]. % Optional
+    \end{innerlist}
+\end{outerlist}
+
+\textbf{University Name 2}, City, Country  \hfill Years Attended (e.g., 2014 - 2018)
+\begin{outerlist}
+  \item[] Another Degree Name, {Another Major/Department}
+  \begin{innerlist}
+    \item Area of Study: [Specific Focus Area].
+    \item GPA: [Your GPA]. % Optional
+  \end{innerlist}
+\end{outerlist}
+
+% --- Add more education entries as needed ---
+%\textbf{University Name 3}, City, Country  \hfill Years Attended
+%\begin{outerlist}
+%  \item[] Previous Degree, {Department}
+%  \begin{innerlist}
+%    \item Area of Study: [Focus].
+%  \end{innerlist}
+%\end{outerlist}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Awards} % Section title
+% --- List your relevant awards and honors ---
+\begin{innerlist}
+  \item [Name of Award], [Year] % Example: First Place in Sample Competition, 2023
+  \item [Scholarship or Grant Name], [Year]
+\end{innerlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Publications} % Section title
+% --- List your publications, patents, or presentations ---
+\begin{innerlist}
+  \item [Authors], "[Publication Title]," [Journal/Conference, Year]. \href{Link to publication}{Link} % Example: J. Doe, "[Sample Paper Title]," Journal of Examples, 2024.
+  \item [Patent Title], Patent Number [Number], [Year]. \href{Link to patent}{Link}
+\end{innerlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Other} % Section title
+% --- List other relevant information: projects, volunteering, interests (optional) ---
+\begin{innerlist}
+  \item [Personal Project Name]: [Brief description or link]. \href{Link to project}{Link}
+  \item [Volunteer Experience]: [Organization, Role, Dates].
+  \item [Certifications]: [Name of Certification, Issuing Body, Year].
+\end{innerlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Languages} % Section title
+% --- List languages and proficiency levels ---
+[Language 1] (Proficiency Level), [Language 2] (Proficiency Level), ... % Example: English (Fluent), Spanish (Conversational)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

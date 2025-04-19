@@ -1,0 +1,65 @@
+name: Convert LaTeX to PDF
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Important: fetch all tags
+
+      - name: Set up LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-latex-recommended texlive-xetex
+
+      - name: Compile LaTeX to PDF
+        run: |
+          pdflatex cv.tex
+          pdflatex cv.tex
+
+      - name: Get latest tag and bump version
+        id: tagger
+        run: |
+          git fetch --tags
+
+          # Get latest tag (defaults to v0.0.0 if none exist)
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $latest_tag"
+
+          # Strip the 'v' and increment **minor** version
+          version=${latest_tag#v}
+          IFS='.' read -r major minor patch <<< "$version"
+          minor=$((minor + 1))
+          patch=0  # Reset patch to 0
+          new_tag="v$major.$minor.$patch"
+
+          echo "New tag: $new_tag"
+          echo "tag=$new_tag" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag ${{ steps.tagger.outputs.tag }}
+          git push origin ${{ steps.tagger.outputs.tag }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tagger.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cv.pdf
+          tag_name: ${{ steps.tagger.outputs.tag }}
