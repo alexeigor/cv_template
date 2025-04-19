@@ -25,6 +25,13 @@ jobs:
           pdflatex cv.tex
           pdflatex cv.tex
 
+      - name: Create GitHub Tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag ${{ steps.tagger.outputs.tag }}
+          git push origin ${{ steps.tagger.outputs.tag }}
+
       - name: Get latest tag and bump version
         id: tagger
         run: |
@@ -43,13 +50,6 @@ jobs:
 
           echo "New tag: $new_tag"
           echo "tag=$new_tag" >> $GITHUB_OUTPUT
-
-      - name: Create GitHub Tag
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag ${{ steps.tagger.outputs.tag }}
-          git push origin ${{ steps.tagger.outputs.tag }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
